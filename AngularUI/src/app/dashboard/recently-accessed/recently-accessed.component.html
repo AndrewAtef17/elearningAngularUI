@@ -1,0 +1,14 @@
+<div class="blockContent">
+    <h2 style="margin-left: 25px;">Recently accessed courses:</h2>
+  <div class="blockContentBody">
+    <div class="flex-container">
+  
+        <div class="card" *ngFor="let course of courses">
+            <img src={{course.img}} alt="Avatar" style="width:100%">
+                <h4 style="text-align: center;"><b>{{course.courseName}}</b></h4>
+                <p style="text-align: center;">{{course.progress}}</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>

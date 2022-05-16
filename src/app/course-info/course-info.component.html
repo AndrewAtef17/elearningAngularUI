@@ -1,0 +1,27 @@
+<div class="blockContent">
+    <h3 style="margin-left: 25px;text-decoration: underline;"><a (click)="onClicked('allcourses')">All Courses ></a> {{course.name}} ></h3>
+  <div class="blockContentBody">
+    <h2>Enrollment Options</h2>
+    <div class="container">
+      <div class="cell">
+        <div class="card">
+          <img src="../../assets/u46.png" alt="Avatar" style="width:100%">
+              <h2 style="text-align: center;">{{course.name}}</h2>
+              <h3 style="text-align: center;padding-bottom: 5%;">-{{course.code}} ({{course.creditHours}}CH)</h3>
+      </div>
+      </div>
+      <div class="cell" style="padding: 2% 4%;">
+        <h3>Course Prerequisites:</h3>
+        <div *ngFor="let pre of prereq">
+          <p>-{{pre}}</p>
+        </div>
+      </div>
+    </div>
+      <input *ngIf="blocked" disabled class="button" type="button" value="Request Course" >
+      <input *ngIf="blocked === false" class="button" type="button" value="Request Course" >
+      <h4 *ngIf="blocked" style="color: red;margin: 1%;">{{reason}}</h4>
+    </div>
+  </div>
+
+
+ 

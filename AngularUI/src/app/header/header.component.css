@@ -1,0 +1,119 @@
+/*Page outline format*/
+* {
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+/*Header and Footer */
+.container {
+    width: 98%;
+    margin:0 auto;
+    /* Center the DIV horizontally */
+}
+.fixed-header{
+    width: 100%;
+    position: fixed;
+    background: #008080;
+    padding: 10px 0;
+    color: #fff;
+}
+
+.footer {
+    width: 100%;
+    background: #008080;
+    padding: 10px 0;
+    color: #fff;
+    min-height: 100px;
+}
+
+.fixed-header {
+    top: 0;
+    left: 0;
+}
+
+nav a,h2 {
+    font-size: 1.5em;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5em;
+    display: inline-block;
+}
+
+/*Side Nav */
+.sidenav {
+    margin-top: 4.9em;
+    height: 90.9%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #008080;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 30px;
+}
+    
+.sidenav a {
+    padding: 25px 8px 25px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    word-wrap: break-word;
+}
+    
+.sidenav a:hover:not(.active) {
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+    
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+    
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+.parent {
+    position: relative;
+  }
+.child {
+    /* ... */
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+.active{
+    background-color: rgba(0,0,0,0.4);
+  }
+hr{
+      width: 80%;
+      margin: auto;
+      height: 2px;
+      background-color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.4);
+      border-width: 0;
+}
+
+.logout:hover {
+    background-color: rgba(0,0,0,0.4);
+}
+.logout{
+    width: 14.5%;
+    text-align: center;
+    border-left: 6px solid rgba(255,255,255,0.4);
+}

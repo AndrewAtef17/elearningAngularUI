@@ -1,0 +1,24 @@
+<div class="blockContent">
+    <h3 style="margin-left: 25px;text-decoration: underline;"><a (click)="onClicked('mycourses')">My Courses ></a> {{name}} ></h3>
+  <div class="blockContentBody">
+    <h1 style="text-align: center;">{{name}}</h1>
+
+    </div>
+  </div>
+
+  <div class="blockContent">
+    <h3 style="margin-left: 25px;">Materials:</h3>
+    <div class="blockContentBody">
+      <div style="text-align: center;">
+        <select #mySelect (change)='onOptionsSelected(mySelect.value)' style="width: 75%;border-width: 2px;font-size: 1em;margin: 2%;">
+          <!-- Add for loop on weeks--> 
+          <option *ngFor="let item of [].constructor(weeks); let i = index" value={{i+1}}>Week {{i+1}}</option>
+      </select>
+    </div>
+    <div *ngFor="let item of Materials | keyvalue">
+      <div style="margin: 3% 2%;">
+      <a style="font-size: 1.2em;" href={{item.value}}><img src="../../assets/grades.jpg" height="25px" width="25px"> {{item.key}}</a>
+    </div>
+    </div>
+    </div>
+  </div>

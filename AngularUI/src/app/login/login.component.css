@@ -1,0 +1,75 @@
+/*Page outline format*/
+* {
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 32%;
+    padding: 10px;
+    /* Should be removed. Only for demonstration */
+    background-color: white;
+}
+
+.empty {
+    float: left;
+    width: 8%;
+    padding: 10px;
+    /* Should be removed. Only for demonstration */
+    background-color: white;
+}
+
+.content {
+    float: left;
+    width: 52%;
+    padding: 10px;
+    /* Should be removed. Only for demonstration */
+    background-color: white;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.loginbox{
+    margin-top: 10%;
+    width: 90%;
+    background-color: #008080;
+    border-radius: 5px;
+    color: white;
+    padding: 8%;
+}
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  /* Set a style for all buttons */
+.button {
+    font-size: 1.2em;
+    color: white;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+  }
+  .loginPic{
+    margin-top: 2%;
+    height: 600px;
+    width: 100%;
+    background-color: #008080;
+  }

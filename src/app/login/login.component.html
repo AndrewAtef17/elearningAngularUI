@@ -1,0 +1,28 @@
+
+<div class="row">
+    <div class="empty">
+    </div>
+    <div class="column">
+        <h2 style="font-size: 3em;color: #008080;">Welcome to the<br> E-Learning <br>System</h2>
+        <div class="loginbox">
+            <h2 style="font-size: 2em;text-align: center;">Login</h2>
+            <form>
+                <label for="username" style="font-size: 1.2em;">Username</label><br>
+                <input type="text" id="username" name="username" style="font-size: 1.2em;" [(ngModel)]="username"><br>
+                <label style="font-size: 1.2em;" for="password">Password:</label><br>
+                <input type="password" id="password" name="password"style="font-size: 1.2em;" [(ngModel)]="password"><br><br>
+                <input style="background-color: #04AA6D;" class="button" type="button" value="Login" (click)="onClicked('login')" >
+            </form> 
+            <button type="button" class="button" style="background-color: #03B6EB;"(click)="onClicked('register')">Register</button>
+        </div>
+        <h3 *ngIf="wrong" style="color: red;margin: 2% 20%;">Wrong Username or Password.</h3>
+    </div>
+    <div class="content">
+        <div class="loginPic">
+            <img src="../../assets/login.png" height="500px" width="100%">
+        </div>
+    </div>
+    <div class="empty">
+    </div>
+  </div>
+  

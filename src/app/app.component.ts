@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'AngularUI';
+  UserPages = true;
+  page = 'login'
+  code = ''
+  currentDate:Date = new Date()
+  onTakeData(message:string){
+    this.page = message
+  }
+  onCourseClick(message:any){
+    this.page = message.page
+    this.code = message.code
+  }
 }

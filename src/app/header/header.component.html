@@ -1,0 +1,25 @@
+<!--Header-->
+<div class="fixed-header">
+    <div class="container">
+        <nav>
+            <div class="parent">
+            <h2 *ngIf="UserPages"><span id="Close" style="font-size:1.5em;cursor:pointer;display: none;"class="closebtn child" onclick="closeNav()">&nbsp;&times;&nbsp;</span></h2>
+            <h2 *ngIf="UserPages"><span id="Open" style="font-size:1.4em;cursor:pointer;" class="child" onclick="openNav()">&#9776;&nbsp;</span></h2>
+            <h2 style="float: left;margin-left: 10em;">Welcome to the E-Learning system</h2>
+            <a (click)="onClicked('login')" class="logout" style="float: right;cursor: pointer;">Logout</a>
+        </div>
+        </nav>
+    </div>
+  </div>
+
+  <!--SideNav-->
+<div id="mySidenav" class="sidenav">
+    <a (click)="onClicked('dashboard')"  [class.active]="page === 'dashboard'" style="cursor: pointer;">Dashboard</a>
+    <hr>
+    <a (click)="onClicked('allcourses')" [class.active]="page === 'allcourses' || page === 'courseinfo'" style="cursor: pointer;">All Courses</a>
+    <hr>
+    <a (click)="onClicked('mycourses')" [class.active]="page === 'mycourses' || page === 'coursematerial'"  style="cursor: pointer;">My Courses</a>
+    <hr>
+    <a (click)="onClicked('grades')" [class.active]="page === 'grades'" style="cursor: pointer;">Grades</a>
+    <hr>
+  </div>

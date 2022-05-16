@@ -1,0 +1,50 @@
+
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 6px 12px 6px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    margin: 2% 4% 2% 4%;
+    flex: 0 42%; /* explanation below */
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 12px 24px 12px rgba(0,0,0,0.3);
+  }
+  
+
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .blockContent{
+    margin: 5% 12%;
+    
+  }
+  .blockContentBody{
+    border: 2px solid black;
+    border-radius: 25px;
+    background-color: white;
+    padding: 4% 3%;
+  }
+
+  .pagination {
+    display: inline-block;
+  }
+  
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #008080;
+    cursor: pointer;
+  }
+  
+  .pagination a.active {
+    background-color: rgba(0, 128, 128, 0.6);
+    border: 1px solid #008080;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: rgba(0, 128, 128, 0.6);}

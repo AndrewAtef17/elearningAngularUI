@@ -1,0 +1,29 @@
+<div class="blockContent">
+    <h2 style="margin-left: 25px;">Grades:</h2>
+  <div class="blockContentBody">
+    <div class="flex-container">
+
+        <div class="card" *ngFor="let grade of grades">
+            <div class="insideCard">
+            <div style="display:inline-block;vertical-align:top;width: 30%;">
+                <img width="70px" height="70px" src={{grade.img}} alt="Avatar">
+                </div>
+                <div style="display:inline-block;width: 70%;height: 70px;">
+                    <h2>{{grade.courseName}}</h2>
+                </div>
+                <hr>
+                <p style="font-size: 0.9em;">Yearwork Grades:</p>
+                <div class="gradeStyle">
+                    <p >Practical: &nbsp;{{grade.practical}} /20.00</p>
+                    <p >Yearwork: {{grade.yearwork}} /10.00</p>
+                    <p >Midterm: &nbsp;&nbsp;{{grade.midterm}} /15.00</p>
+                    <p >Quizzes: &nbsp;&nbsp;{{grade.quizzes}} /5.00&nbsp;&nbsp;</p>
+                </div>
+                <hr>
+                <h2>Total Grades: {{grade.total}}</h2>
+            </div>
+        </div>
+    </div>
+        
+    </div>
+  </div>

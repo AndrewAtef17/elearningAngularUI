@@ -1,0 +1,25 @@
+<!--Header and Side Nav-->
+<app-header *ngIf="page !== 'login'&& page !=='register'" (sendata)="onTakeData($event)" [UserPages]="UserPages"></app-header>
+
+
+<!--Main Page-->
+<app-login *ngIf="page === 'login'" (sendata)="onTakeData($event)"></app-login>
+<app-register *ngIf="page === 'register'"(sendata)="onTakeData($event)"></app-register>
+<br><br><br><br>
+<div *ngIf="page !== 'login'&& page !=='register'" class="row">
+  <div class="column">
+  </div>
+  <div class="content">
+    <app-dashboard *ngIf="page === 'dashboard'"></app-dashboard>
+    <app-all-courses *ngIf="page === 'allcourses'"></app-all-courses>
+    <app-my-courses *ngIf="page === 'mycourses'"></app-my-courses>
+    <app-grades *ngIf="page === 'grades'"></app-grades>
+  </div>
+  <div class="column">
+  </div>
+</div>
+
+
+
+ <!--Footer-->
+ <div *ngIf="page !== 'login'&& page !=='register'" class="footer"><div class="container">Copyright &copy; 2016 Your Company</div></div>

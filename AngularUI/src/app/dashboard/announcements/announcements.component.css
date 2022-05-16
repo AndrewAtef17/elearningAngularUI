@@ -1,0 +1,21 @@
+
+    .flex-container {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 80%;
+      margin: auto;
+  
+    }
+    .blockContent{
+      margin: 5% 12%;
+    }
+    .blockContentBody{
+      border: 2px solid black;
+      border-radius: 25px;
+      background-color: white;
+      padding: 2%;
+      
+    }
+
+    span { font-size: 1.5em; font-weight: bold;}
+ span b { font-size: 80%; font-weight: normal }

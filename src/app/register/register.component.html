@@ -1,0 +1,45 @@
+
+<div class="row">
+    <div class="column">
+    </div>
+    <div class="content">
+        <h1 style="font-size: 3em;color: #008080;text-align: center;">Welcome to the E-Learning System</h1>
+        <div class="registerbox">
+            <h1 style="font-size: 2em;text-align: center;">Register</h1><br>
+            <form>
+
+                <div class="row">
+                    <div class="registercolumn">
+                        <label for="email" style="font-size: 1.2em;">Email</label><br>
+                        <input type="text" id="email" name="email" style="font-size: 1.2em;" [(ngModel)]="email"><br>
+                        <p  style="font-size: 1.2em;">Register As:</p>
+                        <label for="typestudent" style="font-size: 1em;margin-left: 30%;">Student</label>
+                        <input name="options" ng-control="options" type="radio" [value]="1"  [(ngModel)]="type" ><br>
+                        <label for="typeteacher" style="font-size: 1em;margin-left: 30%;">Teacher</label>
+                        <input name="options" ng-control="options" type="radio" [value]="2" [(ngModel)]="type" ><br><br>
+                        <label for="username" style="font-size: 1.2em;">Username</label><br>
+                        <input type="text" id="username" name="username" style="font-size: 1.2em;" [(ngModel)]="username"><br>
+                        <label for="faculty" style="font-size: 1.2em;">Faculty</label><br>
+                        <input type="text" id="faculty" name="faculty" style="font-size: 1.2em;" [(ngModel)]="faculty"><br>
+                    </div>
+                    <div class="registercolumn">
+                        <label style="font-size: 1.2em;" for="password">Password</label><br>
+                        <input type="password" id="password" name="password"style="font-size: 1.2em;"  [(ngModel)]="password"><br>
+                        <label style="font-size: 1.2em;" for="repassword">Re-enter Password</label><br>
+                        <input type="password" id="repassword" name="repassword"style="font-size: 1.2em;"><br>
+                        <label style="font-size: 1.2em;" for="uid">ID</label><br>
+                        <input type="text" id="uid" name="uid" style="font-size: 1.2em;"  [(ngModel)]="userID"><br>
+                        <label for="university" style="font-size: 1.2em;">University</label><br>
+                        <input type="text" id="university" name="university" style="font-size: 1.2em;"  [(ngModel)]="university"><br>
+
+                    </div>
+                  </div>
+                  <input class="button" type="button" value="Register" (click)="onClicked('register')">
+                  <input class="button" type="button" value="Back" style="background-color: crimson;" (click)="onClicked('')">
+            </form> 
+        </div>
+    </div>
+    <div class="column">
+        </div>
+  </div>
+  

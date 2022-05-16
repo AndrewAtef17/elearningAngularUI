@@ -1,0 +1,65 @@
+  /*Page outline format*/
+
+
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 6px 12px 6px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    flex: 0 42%; /* explanation below */
+  }
+ 
+  .blockContent{
+    margin: 5% 12%;
+    
+  }
+  .blockContentBody{
+    border: 2px solid black;
+    border-radius: 25px;
+    background-color: white;
+    padding: 2% 5%;
+    
+  }
+
+  a{
+    color: blue;
+  }
+  a:hover {
+    cursor: pointer;
+  }
+
+
+
+.container {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.cell {
+  display: table-cell;
+  vertical-align: top;
+  width: 48%;
+}
+
+.button {
+  background-color: #008080;
+  font-size: 1.2em;
+  color: white;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+}
+.button:disabled {
+  background-color: rgba(0,0,0,0.3);
+  font-size: 1.2em;
+  color: white;
+  padding: 10px 15px;
+  margin: 5px 0;
+  cursor:auto;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+}

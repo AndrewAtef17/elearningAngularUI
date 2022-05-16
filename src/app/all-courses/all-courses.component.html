@@ -1,0 +1,19 @@
+<div class="blockContent">
+    <h3 style="margin-left: 25px;">All Courses:</h3>
+  <div class="blockContentBody">
+      <div style="text-align: center;">
+    <div class="pagination">
+      <a (click)="Clicked(1)" >First</a>
+      <a  *ngFor="let item of [].constructor(numOfPages); let i = index"  (click)="Clicked(i+1)" [class.active]="page === i+1 ">{{i+1}}</a>
+      <a (click)="Clicked(numOfPages)">Last</a>
+      </div>
+    </div>
+    <div class="flex-container">
+        <div style="cursor: pointer;" (click)="onCourseClick({page:'courseinfo',code: course.code})" class="card" *ngFor="let course of courses">
+            <img src={{course.img}} alt="Avatar" style="width:100%">
+                <h3 style="text-align: center;">{{course.name}}</h3>
+        </div>
+        
+      </div>
+    </div>
+  </div>
