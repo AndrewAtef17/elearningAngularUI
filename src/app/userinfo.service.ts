@@ -55,6 +55,19 @@ export class UserinfoService {
     }
     return -1;
   }
+  AuthUser(username:string , password:string){
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
+    return {
+      user : this.httpclient.get(url, {
+        params: new HttpParams()
+        .set('orderBy' , '"UserID"')
+        .set('equalTo' , '"${username}"')
+        .set('equalTo', '"${password}"')
+      }).subscribe((response) => {
+        console.log(response)
+      })
+    }
+  }
   getUser(userid:string){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
     return {
@@ -83,7 +96,7 @@ export class UserinfoService {
     this.httpclient.post(
       url , 
       {UserID : userID,
-      USerName :  username,
+      UserName :  username,
       Password : password,
       Type : type,
       Email : email,

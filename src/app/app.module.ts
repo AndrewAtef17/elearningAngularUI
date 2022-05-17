@@ -19,23 +19,23 @@ import { TeacherComponent } from './teacher/teacher.component';
 import { AdminComponent } from './admin/admin.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
 import { CourseMaterialsComponent } from './course-materials/course-materials.component';
-import { Router, RouterModule,Routes } from '@angular/router';
+import { Router, RouterModule,Route } from '@angular/router';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-const routes: Routes = [
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'grades', component: GradesComponent},
-  {path: 'all-courses', component: AllCoursesComponent},
-  {path: 'my-courses', component: MyCoursesComponent},
-  {path: 'course-info', component: CourseInfoComponent},
-  {path: 'course-materials', component: CourseMaterialsComponent},
-  {path: 'teacher', component: TeacherComponent},
-  {path: 'admin', component: AdminComponent},
-  {path: 'header', component: HeaderComponent},
+const routes: Route[] = [
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'dashboard', component: AppComponent},
+  {path: 'login', component: AppComponent},
+  {path: 'register', component: AppComponent},
+  {path: 'grades', component: AppComponent},
+  {path: 'allcourses', component: AppComponent},
+  {path: 'mycourses', component: AppComponent},
+  {path: 'courseinfo', component: AppComponent},
+  {path: 'coursematerials', component: AppComponent},
+  {path: 'teacher', component: AppComponent},
+  {path: 'admin', component: AppComponent},
 ]
 @NgModule({
   declarations: [
