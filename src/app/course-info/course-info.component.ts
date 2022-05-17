@@ -7,9 +7,9 @@ import { UserinfoService } from 'src/app/userinfo.service';
   styleUrls: ['./course-info.component.css']
 })
 export class CourseInfoComponent implements OnInit {
-  @Input() code:string | undefined
+  @Input() code:any
   course:any
-  prereq = ['Course 1','Course 2','Course 3','Course 4','Course 5']
+  prereq :any[]= []
   blocked = true
   reason = "You Cant Enroll in this Course."
   constructor(private CourseService:CourseService, private UserinfoService:UserinfoService) {
@@ -25,8 +25,14 @@ export class CourseInfoComponent implements OnInit {
     }*/
    }
 
-  ngOnInit(): void {
-    if(this.code ==='SWE490'){
+ async ngOnInit() {
+    this.course= await this.CourseService.getCourse(this.code)
+
+    for (let i = 0 ;i<this.course.prerequisites.length;i++){
+      this.prereq.push(await this.CourseService.getCourse(this.course.prerequisites[i]))
+      
+    }
+   /* if(this.code ==='SWE490'){
       this.course = {
         name:"User Interface Design",
         code:"SWE490",
@@ -67,7 +73,7 @@ export class CourseInfoComponent implements OnInit {
         code:"SWE495",
         creditHours:"3",
       }
-    }
+    }*/
   }
   @Output() sendata: EventEmitter<any> = new EventEmitter<any>();
 
