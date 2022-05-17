@@ -19,7 +19,7 @@ export class CourseService {
   announcements: string[] | undefined
   constructor(private httpclient : HttpClient) { }
   async getCourse(code:string){
-    if(code === 'SWE490'){
+   /* if(code === 'SWE490'){
       this.code = 'SWE490'
       this.name = 'User Interface Design'
       this.weeksNum = 4
@@ -36,7 +36,7 @@ export class CourseService {
       this.to = 3
       this.img = ''
       this.announcements=['Next lecture is cancelled','Quiz 1 will be held during next week']
-    }
+    }*/
 
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
     let course
