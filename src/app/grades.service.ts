@@ -16,6 +16,8 @@ export class GradesService {
     Quizzes: number,
   } | undefined
   constructor(private httpclient : HttpClient) { }
+
+  
   getGrade(courseCode:string[]| string,userID:number){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Grades.json"
     let params = new HttpParams();
