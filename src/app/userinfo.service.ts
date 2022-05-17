@@ -85,6 +85,7 @@ export class UserinfoService {
       }
   }
   async getUser(userid:number){
+    //a
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
     let user
       await this.httpclient.get(url, {
