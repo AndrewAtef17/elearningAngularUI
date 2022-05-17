@@ -7,14 +7,14 @@
         <img height="160px" width="160px" src="../../../assets/profile.png" alt="img"/>
         </div>
         <div style="display:inline-block;">
-        <h2>{{user.username | uppercase}}</h2>
-        <p style="font-style: oblique;font-size:0.9em;">{{user.email}}</p>
-        <p style="font-style: oblique;font-size:0.9em;">{{user.userID}}</p>
+        <h2 *ngIf="gotuser">{{user.USerName | uppercase}}</h2>
+        <p *ngIf="gotuser" style="font-style: oblique;font-size:0.9em;">{{user.Email}}</p>
+        <p *ngIf="gotuser" style="font-style: oblique;font-size:0.9em;">{{user.UserID}}</p>
         </div>
         
       </div>
       <div style="width: 65%;margin: auto;">
-        <h3>Faculty of {{user.faculty}}<br>{{user.university}} University</h3>
+        <h3 *ngIf="gotuser">Faculty of {{user.Faculty}}<br>{{user.University}} University</h3>
       </div>
     </div>
   </div>

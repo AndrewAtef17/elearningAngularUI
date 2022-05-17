@@ -3,14 +3,14 @@
 
 
 <!--Main Page-->
-<app-login *ngIf="page === 'login'" (sendata)="onTakeData($event)"></app-login>
+<app-login *ngIf="page === 'login'" (sendata)="onTakeUserID($event)"></app-login>
 <app-register *ngIf="page === 'register'"(sendata)="onTakeData($event)"></app-register>
 <br><br><br>
 <div *ngIf="page !== 'login'&& page !=='register'" class="row">
   <div class="column">
   </div>
   <div class="content">
-    <app-dashboard *ngIf="page === 'dashboard'" (courseClick)="onCourseClick($event)"></app-dashboard>
+    <app-dashboard *ngIf="page === 'dashboard'" [UserID]="UserID" (courseClick)="onCourseClick($event)"></app-dashboard>
     <app-all-courses *ngIf="page === 'allcourses'"(courseClick)="onCourseClick($event)"></app-all-courses>
     <app-my-courses *ngIf="page === 'mycourses'" (courseClick)="onCourseClick($event)"></app-my-courses>
     <app-grades *ngIf="page === 'grades'"></app-grades>

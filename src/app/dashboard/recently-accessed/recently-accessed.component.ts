@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { UserinfoService } from 'src/app/userinfo.service';
 import { CourseService } from 'src/app/course.service';
@@ -8,6 +8,8 @@ import { CourseService } from 'src/app/course.service';
   styleUrls: ['./recently-accessed.component.css']
 })
 export class RecentlyAccessedComponent implements OnInit {
+  @Input()
+  UserID!: number;
   courses = [
     {
       img: "../../assets/u46.png",

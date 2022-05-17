@@ -55,34 +55,46 @@ export class UserinfoService {
     }
     return -1;
   }
-  AuthUser(username:string , password:string){
+  async AuthUser(username:string , password:string):Promise<string>{
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
     let params = new HttpParams();
-
+    let type
+    let userID
     // Begin assigning parameters
     params = params.append('orderBy', '"USerName"');
     params = params.append('equalTo', `"${username}"`);
     params = params.append('orderBy', '"Password"');
     params = params.append('equalTo', `"${password}"`);
-    return {
-      user : this.httpclient.get(url, {
+      await this.httpclient.get(url, {
         params: params
-      }).subscribe((response) => {
-        console.log(response)
+      }).toPromise().then((response:any) => {
+         type =Object.keys(response).map(key => response[key])[0].Type;
+         userID = Object.keys(response).map(key => response[key])[0].UserID;
       })
-    }
+      if(type === 'student'){
+        return userID + '1'
+      }
+      else if(type ==='teacher'){
+        return userID + '2'
+      }
+      else if (type ==='admin'){
+        return userID + '0'
+      }
+      else{
+        return '-1'
+      }
   }
-  getUser(userid:string){
+  async getUser(userid:number){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
-    return {
-      user : this.httpclient.get(url, {
+    let user
+      await this.httpclient.get(url, {
         params: new HttpParams()
         .set('orderBy' , '"UserID"')
-        .set('equalTo' , '"${userid}"')
-      }).subscribe((response) => {
-        console.log(response)
+        .set('equalTo' , `${userid}`)
+      }).toPromise().then((response:any) => {
+        user =Object.keys(response).map(key => response[key])[0];
       })
-    }
+      return user
   }
   getUsers(){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"

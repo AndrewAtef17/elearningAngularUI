@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserinfoService } from 'src/app/userinfo.service';
 import { CourseService } from 'src/app/course.service'
 @Component({
@@ -7,7 +7,8 @@ import { CourseService } from 'src/app/course.service'
   styleUrls: ['./announcements.component.css']
 })
 export class AnnouncementsComponent implements OnInit {
-
+  @Input()
+  UserID!: number;
   //get Courses from courseID
   //get Announcement of each course
   //add it in array announcements

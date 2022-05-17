@@ -24,6 +24,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+
 const routes: Route[] = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'dashboard', component: AppComponent},

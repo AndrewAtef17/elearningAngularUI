@@ -18,17 +18,19 @@ export class LoginComponent implements OnInit {
   
   @Output() sendata: EventEmitter<any> = new EventEmitter<any>();
   @Output() sendUser: EventEmitter<any> = new EventEmitter<any>();
-  onClicked(page:string){
-    const rvalue= this.UserinfoService.AuthUser(this.username.toLowerCase(),this.password)
-   /* if(page ==='login'){
+  async onClicked(page:string){
+     if(page ==='login'){
+     const value:string= await this.UserinfoService.AuthUser(this.username.toLowerCase(),this.password)
+     const rvalue  = +value.slice(-1);
+     const userID = +value.slice(0, -1);
       if(rvalue === 1){
-        this.sendata.emit('dashboard');
+        this.sendata.emit({page:'dashboard', userID: userID});
       }
       else if(rvalue === 2){
-        this.sendata.emit('teacher')
+        this.sendata.emit({page:'teacher', userID: userID})
       }
       else if (rvalue === 0){
-        this.sendata.emit('admin')
+        this.sendata.emit({page:'admin', userID: userID})
       }
       else{
         this.wrong= true;
@@ -36,6 +38,6 @@ export class LoginComponent implements OnInit {
     }
     else if(page==='register'){
       this.sendata.emit('register');
-    }*/
+    }
   }
 }

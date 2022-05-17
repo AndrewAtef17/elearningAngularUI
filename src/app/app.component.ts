@@ -9,14 +9,20 @@ export class AppComponent {
   UserPages = true;
   page = 'login'
   code = ''
+  UserID:number = -1
   currentDate:Date = new Date()
   onTakeData(message:string){
     this.page = message
   }
+ onTakeUserID(message:any){
+  this.page = message.page
+  this.UserID = message.userID
+ }
   onCourseClick(message:any){
     this.page = message.page
     this.code = message.code
   }
+
   constructor(public location: Location){
     const loc = this.location.path()
     if(loc === '/dashboard'){
