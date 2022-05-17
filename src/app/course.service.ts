@@ -33,7 +33,7 @@ export class CourseService {
       this.creditHours = 4
       this.day = 'sat'
       this.from = 12
-      this.to == 3
+      this.to = 3
       this.img = ''
       this.announcements=['Next lecture is cancelled','Quiz 1 will be held during next week']
     }
@@ -49,16 +49,18 @@ export class CourseService {
     })
     return course
   }
-  getAllCourses(){
+  async getAllCourses(){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
-    return {
-      CoursesList : this.httpclient.get(url).subscribe(
-        (response) => {
-          console.log(response)
+    let courses: any[] = []
+      await this.httpclient.get(url).toPromise().then((response:any) => {
+        for(let i = 0 ; i < Object.keys(response).map(key => response[key]).length ;i++){
+          console.log(Object.keys(response).map(key => response[key])[i])
+          courses.push(Object.keys(response).map(key => response[key])[i])
         }
-      )
-    }
-  }
+      }
+    )
+      return courses
+}
   getMyCurrentCourses(userID:number){
   }
   getMyFinshedCourses(userID:number){
@@ -95,21 +97,22 @@ export class CourseService {
     from:number,
     to:number ,
     img: string,
-    annoucments : string[] | undefined,
+    announcements : string[] | undefined,
     ){
       const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
       this.httpclient.post(url,{
-        Code: code,
-        Name: name,
-        WeeksNum: weeksNum,
-        Prerequisites : prerequisites,
-        Materials : materials,
-        creditHours : creditHours,
-        Day: day,
-        From: from,
-        To : to,
-        Image: img,
-        Annoucments : annoucments,
+      code : code,
+      name : name,
+      weeksNum :weeksNum,
+      prerequisites :prerequisites,
+      materials : materials,
+      creditHours : creditHours,
+      day : day,
+      from : from,
+      to : to,
+      img : img,
+      announcements :announcements
+
       }).subscribe((Response) =>{
         console.log(Response)
         alert(`"New Course Added with Code ${code}."`)

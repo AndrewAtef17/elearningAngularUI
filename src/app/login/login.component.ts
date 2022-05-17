@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserinfoService } from '../userinfo.service';
+import { CourseService } from '../course.service';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { UserinfoService } from '../userinfo.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private UserinfoService:UserinfoService) { }
+  constructor(private UserinfoService:UserinfoService,private CourseService:CourseService) { }
   username:string = ''
   password:string = ''
   wrong:boolean = false
