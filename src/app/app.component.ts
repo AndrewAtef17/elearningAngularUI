@@ -15,8 +15,13 @@ export class AppComponent {
     this.page = message
   }
  onTakeUserID(message:any){
+   if(typeof (message) === 'string'){
+     this.page = message
+   }
+   else{
   this.page = message.page
   this.UserID = message.userID
+   }
  }
   onCourseClick(message:any){
     this.page = message.page

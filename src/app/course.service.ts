@@ -18,7 +18,7 @@ export class CourseService {
   img: string | undefined
   announcements: string[] | undefined
   constructor(private httpclient : HttpClient) { }
-  getCourse(code:string){
+  async getCourse(code:string){
     if(code === 'SWE490'){
       this.code = 'SWE490'
       this.name = 'User Interface Design'
@@ -39,15 +39,15 @@ export class CourseService {
     }
 
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
-    return {
-    courseData : this.httpclient.get(url, {
+    let course
+    await this.httpclient.get(url, {
       params: new HttpParams()
-      .set('orderBy' , '"Code"')
+      .set('orderBy' , '"code"')
       .set('equalTo' , `"${code}"`)
-    }).subscribe((response) => {
-      console.log(response)
+    }).toPromise().then((response:any) => {
+      course =Object.keys(response).map(key => response[key])[0];
     })
-    }
+    return course
   }
   getAllCourses(){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
@@ -85,7 +85,7 @@ export class CourseService {
   }
   addCourse
   (
-     code:string,
+    code:string,
     name:string,
     weeksNum:number,
     prerequisites:string[] | undefined,
@@ -96,7 +96,6 @@ export class CourseService {
     to:number ,
     img: string,
     annoucments : string[] | undefined,
-    studentsID: string[] | undefined
     ){
       const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
       this.httpclient.post(url,{
@@ -111,7 +110,6 @@ export class CourseService {
         To : to,
         Image: img,
         Annoucments : annoucments,
-        StudentsID : studentsID
       }).subscribe((Response) =>{
         console.log(Response)
         alert(`"New Course Added with Code ${code}."`)

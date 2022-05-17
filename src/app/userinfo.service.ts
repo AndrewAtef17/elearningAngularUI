@@ -45,6 +45,7 @@ export class UserinfoService {
       this.type = 'teacher'
       this.faculty = 'Computer and Information Sciences'
       this.university = 'Ain Shams'
+      this.currentCourses = ['SWE300','SWE310']
     }
     if(this.type === 'student')
     return 1;
@@ -61,15 +62,15 @@ export class UserinfoService {
     let type
     let userID
     // Begin assigning parameters
-    params = params.append('orderBy', '"USerName"');
+    params = params.append('orderBy', '"username"');
     params = params.append('equalTo', `"${username}"`);
-    params = params.append('orderBy', '"Password"');
+    params = params.append('orderBy', '"password"');
     params = params.append('equalTo', `"${password}"`);
       await this.httpclient.get(url, {
         params: params
       }).toPromise().then((response:any) => {
-         type =Object.keys(response).map(key => response[key])[0].Type;
-         userID = Object.keys(response).map(key => response[key])[0].UserID;
+         type =Object.keys(response).map(key => response[key])[0].type;
+         userID = Object.keys(response).map(key => response[key])[0].userID;
       })
       if(type === 'student'){
         return userID + '1'
@@ -90,36 +91,40 @@ export class UserinfoService {
     let user
       await this.httpclient.get(url, {
         params: new HttpParams()
-        .set('orderBy' , '"UserID"')
+        .set('orderBy' , '"userID"')
         .set('equalTo' , `${userid}`)
       }).toPromise().then((response:any) => {
         user =Object.keys(response).map(key => response[key])[0];
       })
       return user
   }
-  getUsers(){
+  async getUsers(){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
-    return {
-      UsersList : this.httpclient.get(url).subscribe(
-        (response) => {
-          console.log(response)
+    let users: any[] = []
+
+      await this.httpclient.get(url).toPromise().then((response:any) => {
+          for(let i = 0 ; i < Object.keys(response).map(key => response[key]).length ;i++){
+            users.push (Object.keys(response).map(key => response[key])[i])
+          }
         }
       )
-    }
+        return users
   }
   registerUser(username:string, userID:number, email:string, password:string,type:string,faculty:string,university:string){
-    let profilePic = ''
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
     this.httpclient.post(
       url , 
-      {UserID : userID,
-      USerName :  username,
-      Password : password,
-      Type : type,
-      Email : email,
-      Faculty : faculty,
-      University : university,
-      ProfilePicture : profilePic}
+      {username : username,
+      profilePic : '',
+      userID :userID,
+      email : email,
+      password : password,
+      type : type,
+      finshedCourses : [],
+      currentCourses : [],
+      faculty : faculty,
+      university : university,
+      lastAccessedCourses :[]}
       ).subscribe((Response) =>{
         console.log(Response)
         alert("Registered.")
