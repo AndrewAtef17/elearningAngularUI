@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import {HttpClient, HttpParams} from '@angular/common/http'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +17,7 @@ export class CourseService {
   to:number | undefined
   img: string | undefined
   announcements: string[] | undefined
-  constructor() { }
+  constructor(private httpclient : HttpClient) { }
   getCourse(code:string){
     if(code === 'SWE490'){
       this.code = 'SWE490'
@@ -35,21 +37,27 @@ export class CourseService {
       this.img = ''
       this.announcements=['Next lecture is cancelled','Quiz 1 will be held during next week']
     }
+
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
     return {
-      code: this.code,
-      name:this.name,
-      weeksNum:this.weeksNum,
-      prerequisites:this.prerequisites,
-      materials:this.materials,
-      creditHours:this.creditHours,
-      day:this.day,
-      from:this.from,
-      to:this.to,
-      img: this.img,
-      announcements: this.announcements
+    courseData : this.httpclient.get(url, {
+      params: new HttpParams()
+      .set('orderBy' , '"Code"')
+      .set('equalTo' , `"${code}"`)
+    }).subscribe((response) => {
+      console.log(response)
+    })
     }
   }
   getAllCourses(){
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
+    return {
+      CoursesList : this.httpclient.get(url).subscribe(
+        (response) => {
+          console.log(response)
+        }
+      )
+    }
   }
   getMyCurrentCourses(userID:number){
   }
@@ -57,7 +65,8 @@ export class CourseService {
   }
 
   addCourse
-  ( code:string,
+  (
+     code:string,
     name:string,
     weeksNum:number,
     prerequisites:string[] | undefined,
@@ -66,9 +75,31 @@ export class CourseService {
     day:string ,
     from:number,
     to:number ,
-    img: string){
-
-
-
+    img: string,
+    annoucments : string[] | undefined,
+    studentsID: string[] | undefined
+    ){
+      const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
+      this.httpclient.post(url,{
+        Code: code,
+        Name: name,
+        WeeksNum: weeksNum,
+        Prerequisites : prerequisites,
+        Materials : materials,
+        creditHours : creditHours,
+        Day: day,
+        From: from,
+        To : to,
+        Image: img,
+        Annoucments : annoucments,
+        StudentsID : studentsID
+      }).subscribe((Response) =>{
+        console.log(Response)
+        alert(`"New Course Added with Code ${code}."`)
+      }, (error) => {
+        console.log(error)
+        alert("Error occured please try again")
+      }
+      );
   }
 }
