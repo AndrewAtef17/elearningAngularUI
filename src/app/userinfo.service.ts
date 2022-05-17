@@ -56,8 +56,36 @@ export class UserinfoService {
     }
     return -1;
   }
+  async getMyFinshedCourses(userID:number){
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
 
-  async getCurrentCourses(userID : number){
+    let user:any
+    await this.httpclient.get(url, {
+      params: new HttpParams()
+      .set('orderBy' , '"userID"')
+      .set('equalTo' , `${userID}`)
+    }).toPromise().then((response:any) => {
+      user =Object.keys(response).map(key => response[key])[0];
+    })
+    return user?.finshedCourses
+
+    
+  }
+  async getRecentlyAccesedCoursesOnly(userID : number){
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
+
+    let user:any
+    await this.httpclient.get(url, {
+      params: new HttpParams()
+      .set('orderBy' , '"userID"')
+      .set('equalTo' , `${userID}`)
+    }).toPromise().then((response:any) => {
+      user =Object.keys(response).map(key => response[key])[0];
+    })
+    return user?.lastAccessedCourses
+
+  }
+  async getMyCurrentCourses(userID : number){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
 
     let user:any
