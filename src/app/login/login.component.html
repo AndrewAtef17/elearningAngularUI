@@ -11,7 +11,7 @@
                 <input type="text" id="username" name="username" style="font-size: 1.2em;" [(ngModel)]="username"><br>
                 <label style="font-size: 1.2em;" for="password">Password:</label><br>
                 <input type="password" id="password" name="password"style="font-size: 1.2em;" [(ngModel)]="password"><br><br>
-                <input routerLink="dashboard" style="background-color: #04AA6D;" class="button" type="button" value="Login" (click)="onClicked('login')" >
+                <input style="background-color: #04AA6D;" class="button" type="button" value="Login" (click)="onClicked('login')" >
             </form> 
             <button routerLink="register" type="button" class="button" style="background-color: #03B6EB;"(click)="onClicked('register')">Register</button>
         </div>

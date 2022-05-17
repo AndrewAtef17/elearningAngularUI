@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   @Output() sendUser: EventEmitter<any> = new EventEmitter<any>();
   onClicked(page:string){
     const rvalue= this.UserinfoService.AuthUser(this.username.toLowerCase(),this.password)
-    /*if(page ==='login'){
+   /* if(page ==='login'){
       if(rvalue === 1){
         this.sendata.emit('dashboard');
       }

@@ -57,12 +57,16 @@ export class UserinfoService {
   }
   AuthUser(username:string , password:string){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
+    let params = new HttpParams();
+
+    // Begin assigning parameters
+    params = params.append('orderBy', '"USerName"');
+    params = params.append('equalTo', `"${username}"`);
+    params = params.append('orderBy', '"Password"');
+    params = params.append('equalTo', `"${password}"`);
     return {
       user : this.httpclient.get(url, {
-        params: new HttpParams()
-        .set('orderBy' , '"UserID"')
-        .set('equalTo' , '"${username}"')
-        .set('equalTo', '"${password}"')
+        params: params
       }).subscribe((response) => {
         console.log(response)
       })
@@ -96,7 +100,7 @@ export class UserinfoService {
     this.httpclient.post(
       url , 
       {UserID : userID,
-      UserName :  username,
+      USerName :  username,
       Password : password,
       Type : type,
       Email : email,
