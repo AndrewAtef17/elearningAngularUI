@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 
+import {HttpClient, HttpParams} from '@angular/common/http'
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { User } from 'firebase/auth';
+import { user } from '@angular/fire/auth';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +20,7 @@ export class UserinfoService {
   lastAccessedCourses:string[] | undefined
   faculty:string | undefined
   university: string | undefined
-  constructor() { 
+  constructor(private httpclient : HttpClient) { 
     }
   setUser(username:string,password:string){
     if (username ==='mark' && password === 'mark'){
@@ -50,24 +55,51 @@ export class UserinfoService {
     }
     return -1;
   }
-  getUser(){
+  getUser(userid:string){
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
     return {
-      username: this.username,
-      profilePic: this.profilePic,
-      userID: this.userID,
-      email: this.email,
-      password: this.password,
-      type: this.type,
-      finshedCourses: this.finshedCourses,
-      currentCourses: this.currentCourses,
-      lastAccessedCourses: this.lastAccessedCourses,
-      faculty: this.faculty,
-      university: this.university
+      user : this.httpclient.get(url, {
+        params: new HttpParams()
+        .set('orderBy' , '"UserID"')
+        .set('equalTo' , '"${userid}"')
+      }).subscribe((response) => {
+        console.log(response)
+      })
+    }
+  }
+  getUsers(){
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
+    return {
+      UsersList : this.httpclient.get(url).subscribe(
+        (response) => {
+          console.log(response)
+        }
+      )
     }
   }
   registerUser(username:string, userID:number, email:string, password:string,type:string,faculty:string,university:string){
     let profilePic = ''
-    console.log(userID)
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
+    this.httpclient.post(
+      url , 
+      {UserID : userID,
+      USerName :  username,
+      Password : password,
+      Type : type,
+      Email : email,
+      Faculty : faculty,
+      University : university,
+      ProfilePicture : profilePic}
+      ).subscribe((Response) =>{
+        console.log(Response)
+        alert("Registered.")
+      }, (error) => {
+        console.log(error)
+        alert("Error occured please try again")
+      }
+      );
+      
+
     console.log(type)
   }
 }

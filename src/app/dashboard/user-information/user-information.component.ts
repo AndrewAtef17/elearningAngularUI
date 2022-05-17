@@ -8,7 +8,7 @@ import { UserinfoService } from 'src/app/userinfo.service';
 export class UserInformationComponent implements OnInit {
   user:any
   constructor(private UserinfoService:UserinfoService) {
-  this.user = UserinfoService.getUser()
+  this.user = UserinfoService.getUser(this.user.UserID)
   }
 
   ngOnInit(): void {

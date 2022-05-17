@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+import { HttpClientModule} from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -21,7 +23,7 @@ import { Router, RouterModule,Routes } from '@angular/router';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'login', component: LoginComponent},
@@ -51,7 +53,7 @@ const routes: Routes = [
     TeacherComponent,
     AdminComponent,
     CourseInfoComponent,
-    CourseMaterialsComponent
+    CourseMaterialsComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
