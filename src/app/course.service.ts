@@ -65,26 +65,7 @@ export class CourseService {
   }
   getMyFinshedCourses(userID:number){
   }
-  RegisterCousre(userID : string , courseCode : string){
-    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
-    
-     let userids : string[] | undefined = []
-
-     this.httpclient.get(url, {
-      params: new HttpParams()
-      .set('orderBy' , '"Code"')
-      .set('equalTo' , `"${courseCode}"`)
-    }).subscribe((response) => {
-      //set userids to the UsersID fetched from database
-      console.log(response)
-    })
-    
-    userids?.push(userID)
-
-    this.httpclient.patch(url ,{UsersID : userids }).subscribe((response) =>{
-      console.log(response)
-    })
-  }
+  
   addCourse
   (
     code:string,

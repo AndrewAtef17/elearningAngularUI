@@ -56,6 +56,89 @@ export class UserinfoService {
     }
     return -1;
   }
+
+  async getCurrentCourses(userID : number){
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
+
+    let user:any
+    await this.httpclient.get(url, {
+      params: new HttpParams()
+      .set('orderBy' , '"userID"')
+      .set('equalTo' , `${userID}`)
+    }).toPromise().then((response:any) => {
+      user =Object.keys(response).map(key => response[key])[0];
+    })
+    return user?.currentCourses
+
+  }
+
+  async getRecentlyAccesedCourses(userID : number , coursecode : string){
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
+
+    let user:any
+    let ID : any
+    await this.httpclient.get(url, {
+      params: new HttpParams()
+      .set('orderBy' , '"userID"')
+      .set('equalTo' , `${userID}`)
+    }).toPromise().then((response:any) => {
+      user =Object.keys(response).map(key => response[key])[0];
+      ID =Object.keys(response)[0];
+    })
+    user.lastAccessedCourses.filter((n: any)  => n)
+    user.lastAccessedCourses.push(coursecode)
+    console.log(user.lastAccessedCourses)
+    user.lastAccessedCourses.shift()
+    console.log(user.lastAccessedCourses)
+    user.lastAccessedCourses.filter((n: any)  => n)
+
+    const Uurl = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users/" + ID + ".json";
+      this.httpclient.patch(Uurl , {lastAccessedCourses : user.lastAccessedCourses} ).subscribe((response) =>{
+      console.log(response)
+    })
+    return user?.lastAccessedCourses
+  }
+
+  async DeleteUSer(userID:number){
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
+
+    let user:any
+    let ID : string =''
+      await this.httpclient.get(url, {
+        params: new HttpParams()
+        .set('orderBy' , '"userID"')
+        .set('equalTo' , `${userID}`)
+      }).toPromise().then((response:any) => {
+        ID =Object.keys(response)[0];
+        console.log(ID)
+      })
+
+      const Durl = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users/" + ID + ".json"
+      this.httpclient.delete(Durl).subscribe((response) =>{
+        console.log(response)
+      })
+  }
+
+  async RegisterCousre(userID : number , courseCode : string){
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
+
+    let user:any
+    let ID : string =''
+      await this.httpclient.get(url, {
+        params: new HttpParams()
+        .set('orderBy' , '"userID"')
+        .set('equalTo' , `${userID}`)
+      }).toPromise().then((response:any) => {
+        user =Object.keys(response).map(key => response[key])[0];
+        ID =Object.keys(response)[0];
+
+      })
+      user?.currentCourses.push(courseCode)
+      const Uurl = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users/" + ID + ".json";
+      this.httpclient.patch(Uurl , {currentCourses : user.currentCourses} ).subscribe((response) =>{
+      console.log(response)
+    })
+  }
   async AuthUser(username:string , password:string):Promise<string>{
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
     let params = new HttpParams();

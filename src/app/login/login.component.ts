@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
   async onClicked(page:string){
     try{
      if(page ==='login'){
-        const value:string= await this.UserinfoService.AuthUser(this.username.toLowerCase(),this.password)
+       await this.UserinfoService.getRecentlyAccesedCourses(1 , "SWE300")
+       const value:string= await this.UserinfoService.AuthUser(this.username.toLowerCase(),this.password)
         const rvalue  = +value.slice(-1);
         const userID = +value.slice(0, -1);
          if(rvalue === 1){
