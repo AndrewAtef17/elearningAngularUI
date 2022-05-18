@@ -4,8 +4,8 @@
     <h3 style="margin-left: 25px;">Delete Users:</h3>
   <div class="blockContentBody">
     <label for="userID">Enter User ID:</label><br>
-  <input type="text" id="userID" name="userID">
-  <button class="button buttonRed">Delete</button>
+  <input type="text" id="userID" name="userID" [(ngModel)]="UserID">
+  <button class="button buttonRed" (click)="onClicked('DeleteUser')">Delete</button>
 
     </div>
   </div>

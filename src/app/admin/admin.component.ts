@@ -12,14 +12,14 @@ import { CourseService } from '../course.service';
 export class AdminComponent implements OnInit {
   Code : string = " "
   Name : string = " "
-  Number : number = 0
+  Number! : number
   Prerequisites : string = " "
-  Hours : number = 0 
+  Hours! : number 
   Day : string = " "
-  Start : number = 0 
-  Finish : number = 0 
+  Start! : number
+  Finish! : number 
   Img : string = " "
-  UserID: number = 0
+  UserID! : number
 
   
   //Accept registeration hwa eni hgeb kol el users el status bt3thom pending azhrhom f table w zorar accept aw decline
@@ -56,8 +56,12 @@ export class AdminComponent implements OnInit {
       await this.courseservice.deleteCourse(this.Code)
     }else if(type === "AssigntoTeacher"){
       await this.userinfoservice.RegisterCousre(this.UserID , this.Code)
+      alert('Course Assigned.')
     }else if(type === "RemoveCourseFromTeacher"){
       await this.userinfoservice.removeFromCurrentCourses(this.UserID , this.Code)
+    }else if (type === 'DeleteUser'){
+      await this.userinfoservice.DeleteUSer(this.UserID)
+      alert("User Deleted")
     }else {
       alert("Something Wrong Happend")
     }
