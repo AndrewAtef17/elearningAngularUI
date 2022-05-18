@@ -145,7 +145,30 @@ export class UserinfoService {
     })
     return bol
   }
+  async removeFromCurrentCourses(userID : number , Code:string){
+    const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
 
+    let user:any
+    let ID:any
+    await this.httpclient.get(url, {
+      params: new HttpParams()
+      .set('orderBy' , '"userID"')
+      .set('equalTo' , `${userID}`)
+    }).toPromise().then((response:any) => {
+      user =Object.keys(response).map(key => response[key])[0];
+      ID = Object.keys(response)[0];
+    })
+    let index =  user.currentCourses.indexOf(Code)
+    console.log(index)
+    user.currentCourses.splice(index , 1)
+
+    const Uurl = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users/" + ID + ".json";
+      this.httpclient.patch(Uurl , {currentCourses : user.currentCourses} ).subscribe((response) =>{
+      console.log(response)
+      alert("Course Removed.")
+    })
+
+  } 
   async DeleteUSer(userID:number){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
 
@@ -244,7 +267,7 @@ export class UserinfoService {
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
     let condition:any = await this.UserExists(email)
     if(condition){
-      let users : any = await this.getUsers()
+    let users : any = await this.getUsers()
      const userID =  users[users.length - 1].userID + 1
     this.httpclient.post(
       url , 

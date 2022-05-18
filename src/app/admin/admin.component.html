@@ -14,24 +14,24 @@
     <h3 style="margin-left: 25px;">Create New Course:</h3>
   <div class="blockContentBody">
     <label for="Code">Enter Course Code:</label><br>
-  <input type="text" id="Code" name="Code"><br><br>
+  <input type="text" id="Code" name="Code" [(ngModel)]="Code"><br><br>
   <label for="Name">Enter Course Name:</label><br>
-  <input type="text" id="Name" name="Name"><br><br>
+  <input type="text" id="Name" name="Name" [(ngModel)]="Name"><br><br>
   <label for="Number">Enter Weeks Number:</label><br>
-  <input type="text" id="Number" name="Number"><br><br>
+  <input type="text" id="Number" name="Number" [(ngModel)]="Number"><br><br>
   <label for="Prerequisites">Enter Prerequisites of the course (if multiple add ',' between course codes):</label><br>
-  <input type="text" id="Prerequisites" name="Prerequisites"><br><br>
+  <input type="text" id="Prerequisites" name="Prerequisites" [(ngModel)]="Prerequisites"><br><br>
   <label for="Hours">Enter Credit Hours:</label><br>
-  <input type="text" id="Hours" name="Hours"><br><br>
+  <input type="text" id="Hours" name="Hours" [(ngModel)]="Hours"><br><br>
   <label for="Day">Enter Course Day:</label><br>
-  <input type="text" id="Day" name="Day"><br><br>
+  <input type="text" id="Day" name="Day" [(ngModel)]="Day"><br><br>
   <label for="Start">Enter Start time:</label><br>
-  <input type="text" id="Start" name="Start"><br><br>
+  <input type="text" id="Start" name="Start" [(ngModel)]="Start"><br><br>
   <label for="Finsh">Enter Finsh time:</label><br>
-  <input type="text" id="Finsh" name="Finsh"><br><br>
+  <input type="text" id="Finsh" name="Finsh" [(ngModel)]="Finish"><br><br>
   <label for="Img">Enter Course Img:</label><br>
-  <input type="text" id="Img" name="Img"><br><br>
-  <button class="button buttonGreen">Add Course</button>
+  <input type="text" id="Img" name="Img" [(ngModel)]="Img"><br><br>
+  <button class="button buttonGreen" (click)="onClicked('AddCourse')">Add Course</button>
     
     </div>
   </div>
@@ -40,8 +40,8 @@
     <h3 style="margin-left: 25px;">Delete Course:</h3>
   <div class="blockContentBody">
     <label for="courseCode">Enter Course Code:</label><br>
-  <input type="text" id="courseCode" name="courseCode">
-  <button class="button buttonRed">Delete</button>
+  <input type="text" id="courseCode" name="courseCode" [(ngModel)]="Code">
+  <button class="button buttonRed" (click)="onClicked('DeleteCourse')">Delete</button>
 
     </div>
   </div>
@@ -50,10 +50,10 @@
     <h3 style="margin-left: 25px;">Assign Course to teacher:</h3>
   <div class="blockContentBody">
     <label for="teacherID">Enter Teacher ID:</label><br>
-  <input type="text" id="teacherID" name="teacherID"><br><br>
+  <input type="text" id="teacherID" name="teacherID" [(ngModel)]="UserID"><br><br>
   <label for="courseCode">Enter Course Code:</label><br>
-  <input type="text" id="courseCode" name="courseCode">
-  <button class="button buttonGreen">Assign</button>
+  <input type="text" id="courseCode" name="courseCode" [(ngModel)]="Code">
+  <button class="button buttonGreen" (click)="onClicked('AssigntoTeacher')">Assign</button>
 
     </div>
   </div>
@@ -62,10 +62,10 @@
     <h3 style="margin-left: 25px;">Remove Course from teacher:</h3>
   <div class="blockContentBody">
     <label for="userID">Enter User ID:</label><br>
-  <input type="text" id="userID" name="userID"><br><br>
+  <input type="text" id="userID" name="userID" [(ngModel)]="UserID"><br><br>
   <label for="courseCode">Enter Course Code:</label><br>
-  <input type="text" id="courseCode" name="courseCode">
-  <button class="button buttonRed">Remove</button>
+  <input type="text" id="courseCode" name="courseCode" [(ngModel)]="Code">
+  <button class="button buttonRed" (click)="onClicked('RemoveCourseFromTeacher')">Remove</button>
 
     </div>
   </div>

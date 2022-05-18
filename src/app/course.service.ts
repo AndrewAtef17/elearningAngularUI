@@ -70,6 +70,32 @@ export class CourseService {
   })
  }
 
+
+ async addMaterial(code:string , weekno:number , materialname:string, materiallink:string)
+ {
+  const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
+  let course : any
+  let ID : any
+  await this.httpclient.get(url, {
+    params: new HttpParams()
+    .set('orderBy' , '"code"')
+    .set('equalTo' , `"${code}"`)
+  }).toPromise().then((response:any) => {
+    course =Object.keys(response).map(key => response[key])[0];
+    ID = Object.keys(response)[0]
+  })
+  const name = {
+    name: materialname
+  }
+  course.materials[weekno][name.name] =materiallink
+  const Uurl = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses/"+ID+".json";
+  this.httpclient.patch(Uurl , {materials : course.materials}).subscribe((response) =>{
+    console.log(response)
+  });
+
+
+ }
+
   async getAllCourses(){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
     let courses: any[] = []
