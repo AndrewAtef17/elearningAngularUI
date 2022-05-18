@@ -37,7 +37,6 @@ export class AllCoursesComponent implements OnInit {
   }
   @Output() courseClick: EventEmitter<any> = new EventEmitter<any>();
   onCourseClick(event:any){
-    console.log(event)
     this.courseClick.emit(event);
   }
 }

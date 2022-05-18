@@ -18,7 +18,7 @@
       </div>
     </div>
       <input *ngIf="blocked" disabled class="button" type="button" value="Request Course" >
-      <input *ngIf="blocked === false" class="button" type="button" value="Request Course" >
+      <input *ngIf="blocked === false" class="button" type="button" value="Request Course" (click)="RegisterCourse()">
       <h4 *ngIf="blocked" style="color: red;margin: 1%;">{{reason}}</h4>
     </div>
   </div>

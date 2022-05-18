@@ -75,7 +75,6 @@ export class CourseService {
     let courses: any[] = []
       await this.httpclient.get(url).toPromise().then((response:any) => {
         for(let i = 0 ; i < Object.keys(response).map(key => response[key]).length ;i++){
-          console.log(Object.keys(response).map(key => response[key])[i])
           courses.push(Object.keys(response).map(key => response[key])[i])
         }
       }

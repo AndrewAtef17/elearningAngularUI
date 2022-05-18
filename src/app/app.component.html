@@ -17,7 +17,7 @@
     <app-teacher *ngIf="page === 'teacher'"></app-teacher>
     <app-admin *ngIf="page === 'admin'"></app-admin>
     <app-course-materials *ngIf="page === 'coursematerial'" (sendata)="onTakeData($event)" [code]="code"></app-course-materials>
-    <app-course-info *ngIf="page === 'courseinfo'" (sendata)="onTakeData($event)" [code]="code"></app-course-info>
+    <app-course-info [UserID]="UserID" *ngIf="page === 'courseinfo'" (sendata)="onTakeData($event)" [code]="code"></app-course-info>
   </div>
   <div class="column">
 <h3 style="text-align: center;">Date: {{currentDate | date:'dd-MM-yyyy'}}</h3>

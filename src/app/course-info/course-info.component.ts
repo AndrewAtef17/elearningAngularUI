@@ -7,77 +7,47 @@ import { UserinfoService } from 'src/app/userinfo.service';
   styleUrls: ['./course-info.component.css']
 })
 export class CourseInfoComponent implements OnInit {
+  @Input()
+  UserID!: number;
   @Input() code:any
   course:any
   prereq :any[]= []
-  blocked = true
+  blocked = false
   reason = "You Cant Enroll in this Course."
   constructor(private CourseService:CourseService, private UserinfoService:UserinfoService) {
-    /*const finshedCourses:any = UserinfoService.finshedCourses
-    const code = 'SWE490'
-    this.course = CourseService.getCourse(code)
-    const prerequisites:any = this.course.prerequisites
-    const containsAll = finshedCourses.every((element: any) =>{
-      return prerequisites.includes(element)
-    })
-    if(containsAll){
-      this.blocked = false
-    }*/
    }
 
  async ngOnInit() {
     this.course= await this.CourseService.getCourse(this.code)
-
+  if(this.course.prerequisites !== undefined){
     for (let i = 0 ;i<this.course.prerequisites.length;i++){
-      this.prereq.push(await this.CourseService.getCourse(this.course.prerequisites[i]))
-      
+      this.prereq.push(await this.CourseService.getCourse(this.course.prerequisites[i])) 
     }
-   /* if(this.code ==='SWE490'){
-      this.course = {
-        name:"User Interface Design",
-        code:"SWE490",
-        creditHours:"4",
+  }
+    let finshed = await this.UserinfoService.getMyFinshedCourses(this.UserID)
+    let current = await this.UserinfoService.getMyCurrentCourses(this.UserID)
+    if(current.includes(this.code)){
+      this.blocked = true
+    }
+    else{
+      if(this.course.prerequisites !== undefined){
+    for(let i = 0 ; i < this.course.prerequisites.length;i++){
+      if(!finshed.includes(this.course.prerequisites[i])){
+        this.blocked = true
+        break
       }
     }
-    else if (this.code === 'SWE491'){
-      this.course = {
-        name:"Cloud Computing",
-        code:"SWE491",
-        creditHours:"4",
-      }
+  }
     }
-    else if (this.code === 'SWE492'){
-      this.course = {
-        name:"SW Maintainence",
-        code:"SWE492",
-        creditHours:"3",
-      }
-    }
-    else if (this.code ==='SWE493'){
-      this.course = {
-        name:"Safety Critical Systems",
-        code:"SWE493",
-        creditHours:"4",
-      }
-    }
-    else if (this.code === 'SWE494'){
-      this.course = {
-        name:"Big Data",
-        code:"SWE494",
-        creditHours:"3",
-      }
-    }
-    else if (this.code === 'SWE495'){
-      this.course = {
-        name:"Artificial Intelligence",
-        code:"SWE495",
-        creditHours:"3",
-      }
-    }*/
   }
   @Output() sendata: EventEmitter<any> = new EventEmitter<any>();
 
   onClicked(page:string){
       this.sendata.emit(page);
   }
+  RegisterCourse(){
+    this.UserinfoService.RegisterCousre(this.UserID,this.code)
+    this.sendata.emit('allcourses');
+    alert("Course Registered.")
+}
 }
