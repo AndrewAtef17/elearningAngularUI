@@ -14,7 +14,7 @@
     <app-all-courses *ngIf="page === 'allcourses'"(courseClick)="onCourseClick($event)"></app-all-courses>
     <app-my-courses *ngIf="page === 'mycourses'" [UserID]="UserID" (courseClick)="onCourseClick($event)"></app-my-courses>
     <app-grades [UserID]="UserID" *ngIf="page === 'grades'"></app-grades>
-    <app-teacher *ngIf="page === 'teacher'"></app-teacher>
+    <app-teacher [UserID]="UserID" *ngIf="page === 'teacher'"></app-teacher>
     <app-admin *ngIf="page === 'admin'"></app-admin>
     <app-course-materials *ngIf="page === 'coursematerial'" (sendata)="onTakeData($event)" [code]="code"></app-course-materials>
     <app-course-info [UserID]="UserID" *ngIf="page === 'courseinfo'" (sendata)="onTakeData($event)" [code]="code"></app-course-info>
