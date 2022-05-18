@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private UserinfoService:UserinfoService,private CourseService:CourseService, private GradesService : GradesService,private route:Router) { }
+  constructor(private UserinfoService:UserinfoService,private route:Router) { }
 
   username:string = ''
   password:string = ''
