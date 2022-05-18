@@ -11,7 +11,10 @@ export class GradesComponent implements OnInit {
   @Input()
   UserID!: number;
   img = "../../assets/grades.jpg"
-  grades = [
+  grades :any[] = []
+  gradess :any[] = []
+
+  /*grades = [
     {
       name: "User Interface Design",
       practical: '--',
@@ -52,20 +55,29 @@ export class GradesComponent implements OnInit {
       quizzes:  '--',
       total:  '--',
     },
-  ]
+  ]*/
   courses:any
-  constructor(private GradesService:GradesService) { 
+  constructor(private GradesService:GradesService, private CourseService:CourseService) { 
 
   }
 
  async ngOnInit() {
-      /*  const userID:any = UserinfoService.userID
-    const courses:any = CourseService.getMyCurrentCourses(userID)
-    for(let i = 0 ; i< courses.length ; i++){
-      this.courses.push(courses[i].code)
-    }
-    GradesService.getGrades(this.courses,userID)
-*/
+
+    this.gradess.push(await this.GradesService.getMyGrades(this.UserID))
+    this.gradess = this.gradess[0]
+    console.log(this.gradess)
+
+    for(let i = 0 ;i< this.gradess.length;i++){
+    let course:any = await this.CourseService.getCourse(this.gradess[i].courseCode)
+    this.grades.push({
+      name: course.name,
+      practical: this.gradess[i].Grades.Practical,
+      yearwork: this.gradess[i].Grades.Yearwork,
+      midterm: this.gradess[i].Grades.Midterm,
+      quizzes: this.gradess[i].Grades.Quizzes,
+      total: this.gradess[i].GPA
+    })
+  }
   }
 
 }

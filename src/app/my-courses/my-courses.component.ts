@@ -23,7 +23,11 @@ export class MyCoursesComponent implements OnInit {
     }
   }
   @Output() courseClick: EventEmitter<any> = new EventEmitter<any>();
-  onCourseClick(event:any){
+  async onCourseClick(event:any){
+    let all = await this.UserinfoService.getRecentlyAccesedCoursesOnly(this.UserID)
+    if(all.includes(event.code) === false){
+    this.UserinfoService.getRecentlyAccesedCourses(this.UserID,event.code)
+    }
     this.courseClick.emit(event);
   }
 }
