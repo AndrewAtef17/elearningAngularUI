@@ -127,19 +127,23 @@ export class UserinfoService {
     return user?.lastAccessedCourses
   }
 
-  async UserExists(userID:number){
+  async UserExists(email : string){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
+    let bol:boolean = false
     await this.httpclient.get(url, {
       params: new HttpParams()
-      .set('orderBy' , '"userID"')
-      .set('equalTo' , `${userID}`)
+      .set('orderBy' , '"email"')
+      .set('equalTo' , `"${email}"`)
     }).toPromise().then((response:any) => {
-      if(response === null)
+      console.log(response)
+      if(Object.keys(response).length === 0)
       {
-        return true
+        console.log(response)
+        bol = true
       }
-      return null
+
     })
+    return bol
   }
 
   async DeleteUSer(userID:number){
@@ -236,10 +240,12 @@ export class UserinfoService {
       )
         return users
   }
-  async registerUser(username:string, userID:number, email:string, password:string,type:string,faculty:string,university:string){
+  async registerUser(username:string, email:string, password:string,type:string,faculty:string,university:string){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
-    let condition:any = await this.UserExists(userID)
+    let condition:any = await this.UserExists(email)
     if(condition){
+      let users : any = await this.getUsers()
+     const userID =  users[users.length - 1].userID + 1
     this.httpclient.post(
       url , 
       {username : username,
@@ -264,7 +270,5 @@ export class UserinfoService {
     }else{
       alert("User Already Exists")
     }
-
-    console.log(type)
   }
 }
