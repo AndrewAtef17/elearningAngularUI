@@ -47,6 +47,7 @@
   <div class="blockContentBody">
     <label for="courseCodeMaterial">Enter Course Code:(You must teach in this course to add materials in it.)</label><br>
     <input type="text" id="courseCodeMaterial" name="courseCodeMaterial" [(ngModel)]="Code"><br><br>
+
     <label for="Number">Enter Week Number:</label><br>
     <input type="text" id="Number" name="Number" [(ngModel)]="Weekno"><br><br>
     <label for="materialName">Enter Material Name:</label><br>
@@ -65,5 +66,6 @@
     <label for="Annoncement">Enter Announcement:</label><br>
     <input type="text" id="Annoncement" name="Annoncement" [(ngModel)]="Ann"><br><br> 
     <button class="button buttonGreen" (click)="onClicked('AddAnn')">Add Announcement</button>
+
     </div>
   </div>

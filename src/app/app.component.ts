@@ -12,13 +12,21 @@ export class AppComponent {
   UserID:number = -1
   currentDate:Date = new Date()
   onTakeData(message:string){
+    if(message === 'admin' || message === 'teacher'){
+      this.UserPages =false
+    }
     this.page = message
   }
  onTakeUserID(message:any){
+  if(message.page === 'admin' || message.page === 'teacher'){
+    console.log('here')
+    this.UserPages =false
+  }
    if(typeof (message) === 'string'){
      this.page = message
    }
    else{
+    
   this.page = message.page
   this.UserID = message.userID
    }
