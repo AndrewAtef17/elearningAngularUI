@@ -14,13 +14,16 @@ export class AppComponent {
   onTakeData(message:string){
     if(message === 'admin' || message === 'teacher'){
       this.UserPages =false
+      console.log(message)
     }
     this.page = message
   }
  onTakeUserID(message:any){
   if(message.page === 'admin' || message.page === 'teacher'){
-    console.log('here')
     this.UserPages =false
+  }
+  if(message.page==='dashboard'){
+    this.UserPages =true
   }
    if(typeof (message) === 'string'){
      this.page = message

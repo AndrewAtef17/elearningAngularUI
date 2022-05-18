@@ -34,7 +34,7 @@ const routes: Route[] = [
   {path: 'allcourses', component: AppComponent},
   {path: 'mycourses', component: AppComponent},
   {path: 'courseinfo', component: AppComponent},
-  {path: 'coursematerials', component: AppComponent},
+  {path: 'coursematerial', component: AppComponent},
   {path: 'teacher', component: AppComponent},
   {path: 'admin', component: AppComponent},
 ]

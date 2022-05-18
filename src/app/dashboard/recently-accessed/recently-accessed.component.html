@@ -3,7 +3,7 @@
   <div class="blockContentBody">
     <div class="flex-container">
   
-        <div routerLink="coursematerial" style="cursor: pointer;" (click)="onCourseClick({page:'coursematerial',courseName: course.name})" class="card" *ngFor="let course of courses.reverse()">
+        <div routerLink="coursematerial" style="cursor: pointer;" (click)="onCourseClick({page:'coursematerial',code: course.code})" class="card" *ngFor="let course of courses.reverse()">
             <img src={{img}} alt="Avatar" style="width:100%">
                 <h3 style="text-align: center;"><b>{{course.name}}</b></h3>
         </div>
