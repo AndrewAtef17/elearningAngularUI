@@ -49,6 +49,27 @@ export class CourseService {
     })
     return course
   }
+
+ async deleteCourse(code:string){
+  const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
+  let ID
+  await this.httpclient.get(url, {
+    params: new HttpParams()
+    .set('orderBy' , '"code"')
+    .set('equalTo' , `"${code}"`)
+  }).toPromise().then((response:any) => {
+    ID =Object.keys(response)[0];
+  })
+
+  const Durl = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses/"+ ID +".json"
+  this.httpclient.delete(Durl).subscribe((response) =>{
+    if(response === null){
+      alert(`"Course with Code:${code} Doesn't Exist"`)
+    }
+    alert(`"Corse with Code: ${code} is Deleted"`)
+  })
+ }
+
   async getAllCourses(){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Courses.json"
     let courses: any[] = []
@@ -61,11 +82,6 @@ export class CourseService {
     )
       return courses
 }
-  getMyCurrentCourses(userID:number){
-  }
-  getMyFinshedCourses(userID:number){
-  }
-  
   addCourse
   (
     code:string,
