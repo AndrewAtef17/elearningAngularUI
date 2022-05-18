@@ -7,14 +7,15 @@
         <img height="160px" width="160px" src="../../../assets/profile.png" alt="img"/>
         </div>
         <div style="display:inline-block;">
-        <h2>DR. {{teacher.name}}</h2>
+        <h2>DR. {{teacher.username}}</h2>
         <p style="font-style: oblique;font-size:0.9em;">{{teacher.email}}</p>
-        <p style="font-style: oblique;font-size:0.9em;">{{teacher.id}}</p>
+        <p style="font-style: oblique;font-size:0.9em;">{{teacher.userID}}</p>
         </div>
         
       </div>
       <div style="width: 65%;margin: auto;">
-        <h3>{{teacher.faculty}}<br>{{teacher.university}}<br><br>You are currently teaching in: {{teacher.courses}} Courses </h3>
+        <h3>Faculty of {{teacher.faculty}}<br>{{teacher.university}} University<br><br>You are currently teaching in: {{teacher.courses}} Courses </h3>
+        <h4>Your Courses Are: ({{teacher.currentCourses}})</h4>
       </div>
     </div>
   </div>
@@ -22,7 +23,21 @@
   <div class="blockContent">
     <h3 style="margin-left: 25px;">Add Grade:</h3>
   <div class="blockContentBody">
-    
+    <label for="courseCode">Enter Course Code:</label><br>
+    <input type="text" id="courseCode" name="courseCode"><br><br>
+    <label for="userID">Enter User ID:</label><br>
+  <input type="text" id="userID" name="userID"><br><br>
+  <label for="courseGPA">Enter Course GPA:</label><br>
+  <input type="text" id="courseGPA" name="courseGPA"><br><br>
+  <label for="Practical">Enter Practical Grade:</label><br>
+  <input type="text" id="Practical" name="Practical"><br><br>
+  <label for="Yearwork">Enter Yearwork Grade:</label><br>
+  <input type="text" id="Yearwork" name="Yearwork"><br><br>
+  <label for="Midterm">Enter Midterm Grade:</label><br>
+  <input type="text" id="Midterm" name="Midterm"><br><br>
+  <label for="Quizzes">Enter Quizzes Grade:</label><br>
+  <input type="text" id="Quizzes" name="Quizzes"><br><br>
+  <button class="button buttonGreen">Add Grade</button>
 
     </div>
   </div>
@@ -30,15 +45,25 @@
   <div class="blockContent">
     <h3 style="margin-left: 25px;">Add Materials:</h3>
   <div class="blockContentBody">
-    
-    
+    <label for="courseCode">Enter Course Code:(You must teach in this course to add materials in it.)</label><br>
+    <input type="text" id="courseCode" name="courseCode"><br><br>
+    <label for="Number">Enter Week Number:</label><br>
+    <input type="text" id="Number" name="Number"><br><br>
+    <label for="materialName">Enter Material Name:</label><br>
+    <input type="text" id="materialName" name="materialName"><br><br>
+    <label for="materialLink">Enter Material Link:</label><br>
+    <input type="text" id="materialLink" name="materialLink"><br><br>
+    <button class="button buttonGreen">Add Material</button>
     </div>
   </div>
 
   <div class="blockContent">
     <h3 style="margin-left: 25px;">Add Announcement:</h3>
   <div class="blockContentBody">
-    
-    
+    <label for="courseCode">Enter Course Code:(You must teach in this course to Add Announcements in it.)</label><br>
+    <input type="text" id="courseCode" name="courseCode"><br><br>
+    <label for="Annoncement">Enter Announcement:</label><br>
+    <input type="text" id="Annoncement" name="Annoncement"><br><br> 
+    <button class="button buttonGreen">Add Announcement</button>
     </div>
   </div>
