@@ -12,28 +12,27 @@ export class AnnouncementsComponent implements OnInit {
   //get Courses from courseID
   //get Announcement of each course
   //add it in array announcements
-  annoucements =[
-    {
-      courseName: "User Interface Design",
-      announcement: "Project phase 1 should be delivered by 9/4/2022"
-    },
-    {
-      courseName: "Software Maintenance",
-      announcement: "The next lecture will be online on Thursday 2:00pm"
-    }
-  ]
+  announcements:any
   constructor(private UserinfoService:UserinfoService, private CourseService:CourseService) {
-   /* const userID:any = UserinfoService.userID
-    const myCourses:any = CourseService.getMyCurrentCourses(userID)
-    let announce:any
+  
+    }
+
+ async ngOnInit() {
+    const myCoursesCodes:any = await this.UserinfoService.getMyCurrentCourses(this.UserID)
+    let myCourses:any[]=[]
+    for (let i = 0 ;i<myCoursesCodes.length;i++){
+      myCourses.push(await this.CourseService.getCourse(myCoursesCodes[i]))
+    }
+    console.log(myCourses)
+    let announce:any[] = []
     for(let i = 0 ; i < myCourses.length;i++){
-      for(let j = 0 ; j< myCourses[i].annoucements.length;j++)
-      announce.push({courseName: myCourses[i].name, announcement: myCourses[i].annoucements[j]})
+      if(myCourses[i].announcements !== undefined){
+      for(let j = 0 ; j< myCourses[i].announcements.length;j++)
+      announce.push({courseName: myCourses[i].name, announcements: myCourses[i].announcements[j]})
     }
-    this.annoucements = announce*/
-    }
-
-  ngOnInit(): void {
   }
+  console.log(announce)
 
+    this.announcements = announce
+  }
 }

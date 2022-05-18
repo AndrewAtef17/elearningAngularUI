@@ -12,8 +12,8 @@
   <div class="content">
     <app-dashboard *ngIf="page === 'dashboard'" [UserID]="UserID" (courseClick)="onCourseClick($event)"></app-dashboard>
     <app-all-courses *ngIf="page === 'allcourses'"(courseClick)="onCourseClick($event)"></app-all-courses>
-    <app-my-courses *ngIf="page === 'mycourses'" (courseClick)="onCourseClick($event)"></app-my-courses>
-    <app-grades *ngIf="page === 'grades'"></app-grades>
+    <app-my-courses *ngIf="page === 'mycourses'" [UserID]="UserID" (courseClick)="onCourseClick($event)"></app-my-courses>
+    <app-grades [UserID]="UserID" *ngIf="page === 'grades'"></app-grades>
     <app-teacher *ngIf="page === 'teacher'"></app-teacher>
     <app-admin *ngIf="page === 'admin'"></app-admin>
     <app-course-materials *ngIf="page === 'coursematerial'" (sendata)="onTakeData($event)" [code]="code"></app-course-materials>

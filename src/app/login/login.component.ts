@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserinfoService } from '../userinfo.service';
 import { CourseService } from '../course.service';
 import {GradesService} from '../grades.service'
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -10,7 +11,8 @@ import {GradesService} from '../grades.service'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private UserinfoService:UserinfoService,private CourseService:CourseService, private GradesService : GradesService) { }
+  constructor(private UserinfoService:UserinfoService,private CourseService:CourseService, private GradesService : GradesService,private route:Router) { }
+
   username:string = ''
   password:string = ''
   wrong:boolean = false
@@ -23,8 +25,8 @@ export class LoginComponent implements OnInit {
   async onClicked(page:string){
     try{
      if(page ==='login'){
-       //await this.CourseService.deleteCourse("tst")
        const value:string= await this.UserinfoService.AuthUser(this.username.toLowerCase(),this.password)
+       this.route.navigate(['/', 'dashboard']);
         const rvalue  = +value.slice(-1);
         const userID = +value.slice(0, -1);
          if(rvalue === 1){

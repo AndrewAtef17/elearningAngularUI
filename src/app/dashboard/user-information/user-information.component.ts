@@ -19,7 +19,6 @@ export class UserInformationComponent implements OnInit {
  async ngOnInit() {
   this.user = await this.UserinfoServicee.getUser(this.UserID)
   this.gotuser = true
-    console.log(this.user)
 }
 
 }

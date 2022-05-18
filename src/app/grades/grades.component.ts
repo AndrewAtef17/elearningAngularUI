@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GradesService } from '../grades.service';
 import { CourseService } from 'src/app/course.service'
 import { UserinfoService } from '../userinfo.service';
@@ -8,6 +8,8 @@ import { UserinfoService } from '../userinfo.service';
   styleUrls: ['./grades.component.css']
 })
 export class GradesComponent implements OnInit {
+  @Input()
+  UserID!: number;
   img = "../../assets/grades.jpg"
   grades = [
     {
@@ -52,17 +54,18 @@ export class GradesComponent implements OnInit {
     },
   ]
   courses:any
-  constructor(private GradesService:GradesService,private UserinfoService:UserinfoService,private CourseService:CourseService) { 
-  /*  const userID:any = UserinfoService.userID
+  constructor(private GradesService:GradesService) { 
+
+  }
+
+ async ngOnInit() {
+      /*  const userID:any = UserinfoService.userID
     const courses:any = CourseService.getMyCurrentCourses(userID)
     for(let i = 0 ; i< courses.length ; i++){
       this.courses.push(courses[i].code)
     }
     GradesService.getGrades(this.courses,userID)
 */
-  }
-
-  ngOnInit(): void {
   }
 
 }

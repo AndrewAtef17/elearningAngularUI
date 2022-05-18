@@ -5,7 +5,7 @@
     </div>
     <div class="flex-container">
         <div style="cursor: pointer;" (click)="onCourseClick({page:'coursematerial',code: course.code})" class="card" *ngFor="let course of courses">
-            <img src={{course.img}} alt="Avatar" style="width:100%">
+            <img src={{img}} alt="Avatar" style="width:100%">
             <h3 style="text-align: center;">{{course.name}}</h3>
         </div>
         

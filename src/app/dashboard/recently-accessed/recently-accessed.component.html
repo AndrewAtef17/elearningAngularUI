@@ -4,7 +4,7 @@
     <div class="flex-container">
   
         <div routerLink="coursematerial" style="cursor: pointer;" (click)="onCourseClick({page:'coursematerial',courseName: course.name})" class="card" *ngFor="let course of courses">
-            <img src={{course.img}} alt="Avatar" style="width:100%">
+            <img src={{img}} alt="Avatar" style="width:100%">
                 <h3 style="text-align: center;"><b>{{course.name}}</b></h3>
         </div>
         
