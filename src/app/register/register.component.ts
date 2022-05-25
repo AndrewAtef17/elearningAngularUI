@@ -60,8 +60,9 @@ export class RegisterComponent implements OnInit {
 
   onClicked(type:string){
     console.log(type)
+    //lw string fady by3ml back
     if(type === ''){this.sendata.emit('login');return;}
-    if (this.registerForm.invalid || this.type ==='') {
+    if (this.registerForm.invalid) {
       alert('Invalid Form:\nPlease Fill all fields')
       return;
     }

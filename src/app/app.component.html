@@ -16,16 +16,16 @@
     <app-grades [UserID]="UserID" *ngIf="page === 'grades'"></app-grades>
     <app-teacher [UserID]="UserID" *ngIf="page === 'teacher'"></app-teacher>
     <app-admin *ngIf="page === 'admin'"></app-admin>
+    <!--(sendata) gya mn el event emitter l mn page mo3yna 3yza troh le page tnya, "onTakeData" function mn app component mestnya event (string l page l 3ayz aroha, lazm fe $ 3shan event))-->
     <app-course-materials *ngIf="page === 'coursematerial'" (sendata)="onTakeData($event)" [code]="code"></app-course-materials>
     <app-course-info [UserID]="UserID" *ngIf="page === 'courseinfo'" (sendata)="onTakeData($event)" [code]="code"></app-course-info>
+
   </div>
   <div class="column">
 <h3 style="text-align: center;">Date: {{currentDate | date:'dd-MM-yyyy'}}</h3>
 
   </div>
 </div>
-
-
 
  <!--Footer-->
  <div *ngIf="page !== 'login'&& page !=='register'" class="footer"><div class="container">Copyright &copy; 2016 Your Company</div></div>

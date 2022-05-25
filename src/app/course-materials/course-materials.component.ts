@@ -28,8 +28,8 @@ export class CourseMaterialsComponent implements OnInit {
       this.name = this.course.name
       this.weeks = this.allMaterials.length-1
     }
+  //event binding, mestany event hat2asar 3ala component tany
     @Output() sendata: EventEmitter<any> = new EventEmitter<any>();
-  
     onClicked(page:string){
         this.sendata.emit(page);
     }
@@ -37,5 +37,7 @@ export class CourseMaterialsComponent implements OnInit {
     onOptionsSelected(value:string){
       let numValue = +value
       this.Materials = this.allMaterials[numValue]
+      //allMaterials array
+      //Materials array of objects, {key:assignment, value:url of assignment}
   }
   }

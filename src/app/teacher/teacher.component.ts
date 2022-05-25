@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UserinfoService } from '../userinfo.service';
 import { CourseService } from '../course.service';
 import { GradesService } from '../grades.service';
+import { NgIf } from '@angular/common';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { GradesService } from '../grades.service';
 export class TeacherComponent implements OnInit {
   @Input()
   UserID!: number;
+  UserIDD!: number;
   teacher:any
   Code : any
   Ann : string = " "
@@ -38,7 +40,7 @@ export class TeacherComponent implements OnInit {
       await this.CourseService.addMaterial(this.Code , this.Weekno , this.MaterialName , this.MaterialLink)
     }else if(type === 'AddGrade'){
       console.log(this.Code)
-      await this.GradesService.setGrades(this.Code , this.UserID , this.GPA,
+      await this.GradesService.setGrades(this.Code , this.UserIDD , this.GPA,
          {
            Practical : this.Prac,
            Yearwork : this.YearWork,

@@ -22,7 +22,7 @@ export class UserinfoService {
   university: string | undefined
   constructor(private httpclient : HttpClient) { 
     }
-  setUser(username:string,password:string){
+ /* setUser(username:string,password:string){
     if (username ==='mark' && password === 'mark'){
       this.username = 'mark'
       this.profilePic = ''
@@ -55,7 +55,7 @@ export class UserinfoService {
       return 0;
     }
     return -1;
-  }
+  }*/
   async getMyFinshedCourses(userID:number){
     const url = "https://angularui-51409-default-rtdb.europe-west1.firebasedatabase.app/Users.json"
 
